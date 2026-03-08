@@ -18,7 +18,7 @@ while(true){
     $args = explode(' ', $input_command);
     $command = array_shift($args);
     if(get_executable_path($command)){
-        exec($input_command); 
+        system($input_command); 
         continue;
     }
     switch($command){
