@@ -1,9 +1,6 @@
 <?php
 error_reporting(E_ALL);
 
-$commands = [
-    'echo', 'type', 'exit'
-];
 function get_executable_path($cmd){
     foreach ( explode(':', $_SERVER['PATH']) as $path){
         if(file_exists($full_path = $path. DIRECTORY_SEPARATOR. $cmd) and is_executable($full_path)){
@@ -12,12 +9,15 @@ function get_executable_path($cmd){
     }
     return false;
 }
+$commands = [
+    'echo', 'type', 'pwd', 'exit'
+];
 while(true){
     fwrite(STDOUT, "$ ");
     $input_command = rtrim(fgets(STDIN), "\r\n");
     $args = explode(' ', $input_command);
     $command = array_shift($args);
-    if(get_executable_path($command)){
+    if(!in_array($command, $commands) and get_executable_path($command)){
         system($input_command); 
         continue;
     }
