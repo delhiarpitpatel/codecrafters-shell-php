@@ -7,7 +7,7 @@ while(true){
     if($command === 'exit') break;
     if(str_starts_with($command, 'echo ')){
         fwrite(STDOUT, substr($command, 5) . "\n");
-        continue;
+    } else {
+        fwrite(STDOUT, "{$command}: command not found\n");
     }
-    fwrite(STDOUT, "{$command}: command not found\n");
 }
