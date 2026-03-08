@@ -24,7 +24,7 @@ while(true){
     switch($command){
         case 'exit': break 2;
         case 'cd':
-            exec($input_command);
+            chdir($args[0]);
             break;
         case 'echo':
             fwrite(STDOUT, implode(' ',$args) . "\n");
