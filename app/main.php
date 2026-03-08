@@ -10,7 +10,7 @@ function get_executable_path($cmd){
     return false;
 }
 $commands = [
-    'echo', 'type', 'pwd', 'exit'
+    'echo', 'cd', 'type', 'pwd', 'exit'
 ];
 while(true){
     fwrite(STDOUT, "$ ");
@@ -23,6 +23,9 @@ while(true){
     }
     switch($command){
         case 'exit': break 2;
+        case 'cd':
+            exec($input_command);
+            break;
         case 'echo':
             fwrite(STDOUT, implode(' ',$args) . "\n");
             break;
