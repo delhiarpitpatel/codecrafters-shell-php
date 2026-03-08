@@ -24,7 +24,8 @@ while(true){
     switch($command){
         case 'exit': break 2;
         case 'cd':
-            if(is_dir($dir = $args[0]))
+            if($dir = $args[0]) $dir = $_SERVER['HOME'];
+            if(is_dir($dir))
                 chdir($dir);
             else
                 fwrite(STDOUT, "cd: " . $dir . ": No such file or directory\n");
