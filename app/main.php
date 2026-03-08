@@ -4,5 +4,5 @@ error_reporting(E_ALL);
 while(true){
     fwrite(STDOUT, "$ ");
     $command = rtrim(fgets(STDIN), "\r\n");
-    fwrite(STDOUT, "{$command}: command not found");
+    fwrite(STDOUT, "{$command}: command not found\n");
 }
