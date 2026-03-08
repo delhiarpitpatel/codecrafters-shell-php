@@ -24,7 +24,10 @@ while(true){
     switch($command){
         case 'exit': break 2;
         case 'cd':
-            chdir($args[0]);
+            if(is_dir($dir = $args[0]))
+                chdir($dir);
+            else
+                fwrite(STDOUT, "cd: " . $dir . ": No such file or directory\n");
             break;
         case 'echo':
             fwrite(STDOUT, implode(' ',$args) . "\n");
