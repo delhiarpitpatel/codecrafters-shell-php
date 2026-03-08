@@ -16,6 +16,7 @@ while(true){
     fwrite(STDOUT, "$ ");
     $input_command = rtrim(fgets(STDIN), "\r\n");
     $args = explode(' ', $input_command);
+    array_filter($args);
     $command = array_shift($args);
     if(!in_array($command, $commands) and get_executable_path($command)){
         system($input_command); 
@@ -25,10 +26,8 @@ while(true){
         case 'exit': break 2;
         case 'cd':
             if($dir = $args[0] and $dir === '~') $dir = $_SERVER['HOME'];
-            if(is_dir($dir))
-                chdir($dir);
-            else
-                fwrite(STDOUT, "cd: " . $dir . ": No such file or directory\n");
+            if(is_dir($dir))    chdir($dir);
+            else                fwrite(STDOUT, "cd: " . $dir . ": No such file or directory\n");
             break;
         case 'echo':
             fwrite(STDOUT, implode(' ',$args) . "\n");
