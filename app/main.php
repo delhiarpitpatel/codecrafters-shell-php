@@ -15,6 +15,7 @@ $commands = [
 while(true){
     fwrite(STDOUT, "$ ");
     $input_command = rtrim(fgets(STDIN), "\r\n");
+    $input_command = str_replace("''", '', $input_command);
     $args = explode(' ', $input_command);
     array_filter($args);
     $command = array_shift($args);
